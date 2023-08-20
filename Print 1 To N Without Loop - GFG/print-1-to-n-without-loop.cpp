@@ -11,7 +11,7 @@ class Solution{
     {
         int i=1;
         //Your code here
-        if(N<0)return;
+        //if(N<0)return;
         while(N!=0){
             cout<<i<<" ";
             N--;
