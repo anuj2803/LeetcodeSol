@@ -56,6 +56,8 @@ int main() {
 
 
 /*
+
+/*
 struct Node {
   int data;
   struct Node *next;
@@ -73,18 +75,18 @@ Node *removeDuplicates(Node *head)
  if(head->next==NULL)return head;
  
  Node* temp=head;
- while(temp->next!=NULL){
- Node* forw=temp->next;
-     if(temp->data==forw->data){
-       if(temp->next!=NULL){
-         temp->next=forw->next;
+ while(head->next!=NULL){
+//  Node* forw=temp->next;
+     if(head->data==head->next->data){
+    //   if(temp->next!=NULL){
+         head->next=head->next->next;
        }  
-     }
+    //  }
     else{
-        temp=temp->next;
+        head=head->next;
     }
 
      
  }
- return head;
+ return temp;
 }
