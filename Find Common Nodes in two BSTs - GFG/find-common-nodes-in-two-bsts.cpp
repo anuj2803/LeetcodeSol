@@ -85,12 +85,18 @@ Node* buildTree(string str)
 class Solution
 {
     public:
-    void solve(Node *a,vector<int>&ans){
+    void solve(Node *a,vector<int>&ans, map<int,int>&mp){
         
        if(a==NULL)return;
-        solve(a->left,ans);
-        ans.push_back(a->data);
-        solve(a->right,ans);
+        solve(a->left,ans,mp);
+        if(mp.find(a->data)!=mp.end()){
+            ans.push_back(a->data);
+        }else{
+            mp.insert({a->data,1});
+            
+        }
+        //ans.push_back(a->data);
+        solve(a->right,ans,mp);
     }
     //Function to find the nodes that are common in both BST. 
     vector <int> findCommon(Node *root1, Node *root2)
@@ -102,19 +108,20 @@ class Solution
       Node* b=root2;
      map<int,int>mp;
     //  if(root1==NULL||root2==NULL)return {0};
-     solve(root1,ans);
-     solve(root2,ans);
+     solve(root1,ans,mp);
+     solve(root2,ans,mp);
      
   
- for(int i=0;i<ans.size();i++){
-     mp[ans[i]]++;
-    //  cout<<ans[i]<<endl;
- }
- for(auto it:mp){
-     if(it.second==2){
-         v.push_back(it.first);
-     }
- }return v;
+//  for(int i=0;i<ans.size();i++){
+//      mp[ans[i]]++;
+//     //  cout<<ans[i]<<endl;
+//  }
+//  for(auto it:mp){
+//      if(it.second==2){
+//          v.push_back(it.first);
+//      }
+//  }return v;
+return ans;
  
     }
 };
